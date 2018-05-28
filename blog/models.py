@@ -30,3 +30,4 @@ class Post(models.Model):
     #         ('디비에 저장될 값3', 'ui에 보여질 레이블'),
     #     ))
     
+    # 입력값을 좌우 공백 제거 strip 옵션
