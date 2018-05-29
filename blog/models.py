@@ -38,3 +38,6 @@ class Post(models.Model):
     #     ))
     
     # 입력값을 좌우 공백 제거 strip 옵션
+
+    def __str__(self):
+        return self.title
