@@ -5,7 +5,8 @@ from .models import Post
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'content_size','created_at', 'updated_at']
+    actions = ['make_published','make_draft']
+    list_display = ['id', 'title', 'content_size','status','created_at', 'updated_at']
 
     def content_size(self, post):
         return mark_safe('<strong>{}</strong>글자'.format(len(post.content)))
@@ -23,6 +24,16 @@ class PostAdmin(admin.ModelAdmin):
     formfield_overrides : 특정 form field에 대한 속정 재정의
     form : 디폴트로 몯레 클래스에 대한 form class지정
     '''
+
+    def make_published(self, request, queryset):
+        updated_count = queryset.update(status='p') # QuerySet.update
+        self.message_user(request, '{}건의 포스팅을 Published상태로 변경'.format(updated_count)) # django message framework 활용
+    make_published.short_description = "저정포스팅을 Published로 변경"
+    
+    def make_draft(self, request, queryset):
+        updated_count = queryset.update(status='d') # QuerySet.update
+        self.message_user(request, '{}건의 포스팅을 Draft상태로 변경'.format(updated_count)) # django message framework 활용
+    make_draft.short_description = "저정포스팅을 Draft로 변경"
 
 # admin.site.register(Post, PostAdmin)  
 # 위 코드는 @admin.register(Post) 어노테이션과 같은 기능. 
