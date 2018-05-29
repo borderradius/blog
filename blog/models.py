@@ -39,5 +39,9 @@ class Post(models.Model):
     
     # 입력값을 좌우 공백 제거 strip 옵션
 
+    # 쿼리내 기본정렬은 모델 내 Meta.ordering 설정에 따름.
+    class Meta: 
+        ordering = ['-id']
+
     def __str__(self):
         return self.title
