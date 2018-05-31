@@ -26,7 +26,8 @@ class Post(models.Model):
         blank=True, # 값이 없어도 저장됌. 필수값이 아니라는 뜻.
         help_text='경도, 위도 포맷으로 입력',
         validators=[lnglat_validator])
-    status = models.CharField(max_length=1,choices=STATUS_CHOICES)    
+    status = models.CharField(max_length=1,choices=STATUS_CHOICES)  
+    tag_set = models.ManyToManyField('Tag') # 문자열로 클래스명을 지정해주면 릴레이션을 맺는 클래스가 같은 앱안에 있다고 판단함. 다른 앱의 모델과 릴레이션을 건다면 ? 'auth.Tag' 로 사용 
     created_at = models.DateTimeField(auto_now_add=True) # auto_now_add 최초생성시 자동으로 들어감.
     updated_at = models.DateTimeField(auto_now=True) # auto_now 레코드 생성시 자동으로 들어감.
 
@@ -47,9 +48,17 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+# 댓글모델
 class Comment(models.Model):
     post = models.ForeignKey(Post)
     author = models.CharField(max_length=20)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.name
