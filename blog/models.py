@@ -15,6 +15,7 @@ class Post(models.Model):
         ('w', 'Withdrawn'),
     )
 
+    author = models.CharField(max_length=20)
     title = models.CharField(max_length=100) # 길이제한이 있는 문자열
     content = models.TextField() # 길이제한이 없는 문자열
     tags = models.CharField(
