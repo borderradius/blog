@@ -9,6 +9,16 @@
 <body>
     <h1>{{post.title}}</h1>
     {{post.content|linebreaks}}
-    
+    <hr>
+    <h2>Comments</h2>
+    <ul>
+    {% for comment in post.comment_set.all  %}
+        <li>
+        {{comment.message}}
+        <small>by {{comment.author}}</small>
+        <small>at {{comment.created_at}}</small>
+        </li>
+    {% endfor %}
+    </ul>
 </body>
 </html>

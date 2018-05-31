@@ -1,7 +1,7 @@
 # blog/admin.py
 from django.utils.safestring import mark_safe
 from django.contrib import admin
-from .models import Post
+from .models import Post, Comment
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
@@ -37,3 +37,7 @@ class PostAdmin(admin.ModelAdmin):
 
 # admin.site.register(Post, PostAdmin)  
 # 위 코드는 @admin.register(Post) 어노테이션과 같은 기능. 
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    pass
