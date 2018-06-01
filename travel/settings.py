@@ -61,8 +61,10 @@ ROOT_URLCONF = 'travel.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [
+            os.path.join(BASE_DIR, 'travel', 'templates'), # 여기에도 템플릿 파일이 존재하고 있다라는 걸 알려줘야함. filesystem.loader 프로젝트 전반적으로 쓰일 템플릿 파일은 "특정앱/templates/" 경로가 아닌 별도의 경로에 저장이 필요
+        ],
+        'APP_DIRS': True, # True로 두게되면 장고가 app_directories.loader에 추가를 해줌. app_directories.loader는 settings.INSTALLED_APPS 에 설정된 앱 디렉토리 내 templates경로에서 템플릿 파일을 찾는것
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
