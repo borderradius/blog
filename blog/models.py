@@ -2,6 +2,7 @@
 import re
 from django.forms import ValidationError
 from django.db import models
+from django.conf import settings
 
 # [+_]?  정규표현식에서 ?는 0회 혹은 1회 출현을 의미함. 없거나 혹은 한번 나오거나. 
 def lnglat_validator(value):
@@ -15,7 +16,8 @@ class Post(models.Model):
         ('w', 'Withdrawn'),
     )
 
-    author = models.CharField(max_length=20)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    # author = models.CharField(max_length=20)
     title = models.CharField(max_length=100) # 길이제한이 있는 문자열
     content = models.TextField() # 길이제한이 없는 문자열
     tags = models.CharField(
