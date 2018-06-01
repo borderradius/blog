@@ -1,6 +1,7 @@
 # blog/models.py
 import re
 from django.forms import ValidationError
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.conf import settings
 
@@ -53,6 +54,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog:post_detail', args=[self.id]) # detail 로 이동할때 유용하다. 새글을 작성하거나 수정했을때는 상세페이지를 보여주는것이 당연한 시나리오.
 
 # 댓글모델
 class Comment(models.Model):
