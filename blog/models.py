@@ -16,7 +16,11 @@ class Post(models.Model):
         ('w', 'Withdrawn'),
     )
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='blog_post_set')
+    # related_name='+' -> related_name을 포기한다는 것.
+    # shop모델과 related_name이 충돌나는것을 포기. 충돌나는 이름을 각각 재정의 해주거나 포기해야함.
+
+
     # author = models.CharField(max_length=20)
     title = models.CharField(max_length=100) # 길이제한이 있는 문자열
     content = models.TextField() # 길이제한이 없는 문자열
