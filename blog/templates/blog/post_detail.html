@@ -1,24 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{post.title}}</title>
-</head>
-<body>
-    <h1>{{post.title}}</h1>
-    {{post.content|linebreaks}}
-    <hr>
-    <h2>Comments</h2>
-    <ul>
-    {% for comment in post.comment_set.all  %}
-        <li>
+{% extends "blog/layout.html" %}
+
+
+{% block title %}
+{{ post.title }}
+{% endblock title %}
+
+
+
+{% block content %}
+
+
+<h2>{{post.title}}</h2>
+{{post.content|linebreaks}}
+<hr>
+<h2>Comments</h2>
+<ul>
+    {% for comment in post.comment_set.all %}
+    <li>
         {{comment.message}}
         <small>by {{comment.author}}</small>
         <small>at {{comment.created_at}}</small>
-        </li>
+    </li>
     {% endfor %}
-    </ul>
-</body>
-</html>
+</ul>
+
+
+{% endblock content %}
+
