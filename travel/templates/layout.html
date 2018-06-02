@@ -10,9 +10,20 @@
     </title>
     <!-- 기본 bootstrap -->
     {% comment %} <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" /> {% endcomment %}
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" />
+    {% comment %} <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" /> {% endcomment %}
     <!-- bootstrap: cosmo theme -->
     <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css" /> -->
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
+
+
+
     <style>
         html {
             position: relative;
@@ -47,7 +58,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-default">
+    {% comment %} <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -79,10 +90,112 @@
                 </ul>
             </div>
         </div>
+    </nav> {% endcomment %}
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark primary-color mb-4">
+    
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="#">Navbar</a>
+    
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+    
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'root' %}">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+    
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+    
+            </ul>
+            <!-- Links -->
+    
+            <form class="form-inline">
+                <div class="md-form my-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                </div>
+            </form>
+        </div>
+        <!-- Collapsible content -->
     </nav>
+    <!--/.Navbar-->
+    {# 한줄주석 #}
+
+    {% comment %} 
+    여러줄 
+    주석 
+    렌더링 무시
+
+    서버단에서 주석을 다는것. 프론트단에서 주석을 다는것보다 렌더링시간을 줄일수있음.
+
+    ** 태그종류
+    csrf token : 빈 form을 get방식으로 보여줄 떄 토큰을 발급하고 정보입력 후 서버에 전송할때 post방식으로 넘길때 발급했던 토큰과 같은값인지 검사후 맞다면 서버단에서 요청한 작업시작. input에 hidden값으로 들어가서 전송됌.
+
+    extends : 자식템플릿에서 부모템플릿을 명시하기 위함.
+
+    for : 반복작업, 리스트에 적합
+    loop내 추가지원 variable
+        forloop.counter : 인덱스 1++
+        forloop.counter() : 인덱스 0++
+        forloop.revcounter : 끝인덱스--
+        forloop.revcounter() : (끝인덱스-1)--
+        forloop.first , forloop.last : 첫 실행여부, 마지막 실행여부
+        forloop.parentloop : 중첩 loop에서 부모 loop를 지정
+
+    for ... empty :
+    루프가 돌지 않을경우 empty block을 수행
+     {% for in %} 
+       loop
+     {% empty %} 
+        content nothing exist
+     {% endfor %}
+
+     
+     include
+
+     load : 커스텀 템플릿 태그, 필터셋 로딩
+
+     lorem 2 w random or 3 p or b
+
+
+     now : 현재시간표시 {% now "jS F Y H:i" %}
+
+
+
+     {% verbatim %}
+        {{ if dying }} Still alive. {{/if}}
+        앵귤러나 뷰에서 쓰이는 변수출력인 {{}} 를 사용하기 위함.
+        서버가 렌더링하지 않도록 감싸줌.
+     {% endverbatim %}
+
+     
+    {% endcomment %}
 
     
- 
 
     {% block content %} {% endblock %}
 
@@ -94,5 +207,17 @@
             </p>
         </div>
     </div>
+
+
+
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
 </body>
 </html>
