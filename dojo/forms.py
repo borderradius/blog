@@ -46,3 +46,8 @@ class PostForm(forms.ModelForm):
 
         # 방법 4
         # post = Post.objects.create(**form.cleaned_data)  # form.cleaned_data 는 사전이므로 ** 로 언팩해서 넣을 수 있음. 
+
+
+        #** request.POST['message'] 말고 form.cleaned_data['message']를 이용하자.
+        # request.POST 는 원시데이터. - 띄어쓰기 제대로 안되어 있을수도있음.
+        # form.cleaned_data 는 유효성 검사를 통과한 값들임.
