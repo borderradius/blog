@@ -16,24 +16,9 @@ def post_new(request):
         
         # 인자로 받은 값은 유효성 검증 수행
         if form.is_valid():
-            # 방법 1
-            # post = Post()
-            # post.title = form.cleaned_data['title']
-            # post.content = form.cleaned_data['content']
-            # post.save()
-
-            # 방법 2
-            # post = Post(title=form.cleaned_data['title'],
-            #             content=form.cleaned_data['content'])
-            # post.save()
-
-            # 방법 3
-            # post = Post.objects.create(title=form.cleaned_data['title'],
-            # content=form.cleaned_data['content'])
-
-            # 방법 4
-            post = Post.objects.create(**form.cleaned_data)  # form.cleaned_data 는 사전이므로 ** 로 언팩해서 넣을 수 있음. 
-
+            post = form.save(commit=False)
+            post.ip = request.META['REMOTE_ADDR']
+            post.save()
             return redirect('/dojo/') #namespace: name
     else:
         form = PostForm()
