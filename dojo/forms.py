@@ -12,8 +12,10 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         # fields = '__all__' # model에 정의된 모든 필드를 다 가져옴.
-        fields = ['title','content']
-
+        fields = ['title','content','user_agent']
+        widgets = {
+            'user_agent': forms.HiddenInput,
+        }
 
 
 
