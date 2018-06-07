@@ -3,17 +3,23 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from django import forms
 from .forms import PostForm
+from django.views.generic import ListView
+from django.contrib import messages
+
+
 
 # Create your views here.
 def post_list(request):
     qs = Post.objects.all()
     q = request.GET.get('q', '')
+    post_list = ListView.as_view(model=Post, paginate_by=10)
     if q:
         qs = qs.filter(title__icontains=q)
 
     return render(request, 'blog/post_list.html', {
         'post_list': qs,
         'q':q,
+        'pagination': post_list,
     })
 
 def post_detail(request, id):
@@ -56,6 +62,7 @@ def post_new(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save()
+            messages.success(request, '새 글이 등록되었습니다람쥐.')
             return redirect(post) # post.get_absolute_url() => post detail
     else:    
         form = PostForm()
@@ -70,6 +77,7 @@ def post_edit(request, id):
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save()
+            messages.success(request, '글을 수정하였습니다.')
             return redirect(post) # post.get_absolute_url() => post detail
     else:    
         form = PostForm(instance=post)

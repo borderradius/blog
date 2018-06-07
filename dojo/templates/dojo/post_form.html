@@ -1,3 +1,7 @@
+{% comment %} 
+
+bootstrap3 package 사용이전
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -17,7 +21,7 @@
                 </div>
                 {% endfor %}
 
-                
+
                 <!-- hidden fields
                 는 위젯만 렌더링 -->
                 {% for field in form.hidden_fields %} {{ field }} {% endfor %}
@@ -46,9 +50,7 @@
             </form>
         </div>
     </div>
-</div>
-
-
+</div> 
 
 <script>
     $(function () {
@@ -56,6 +58,30 @@
         $('.form-group input, .form-group textarea').addClass('form-control');
     });
 
+    var dom = document.getElementById('{{ form.user_agent.id_for_label }}')
+    dom.value = navigator.userAgent;
+</script>
+
+{% endcomment %}
+
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h4>Post Form</h4>
+            <form action="" method="post">
+                {% csrf_token %} {% bootstrap_form form %}
+                <input type="submit" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
     var dom = document.getElementById('{{ form.user_agent.id_for_label }}')
     dom.value = navigator.userAgent;
 </script>

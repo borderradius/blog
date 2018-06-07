@@ -3,6 +3,9 @@
 
 {% block content %}
 
+
+
+
 <div class="container">
     <div class="jumbotron">
         <h1>Django Template
@@ -62,6 +65,10 @@
                 {% endfor %}
                 </tbody>
             </table>
+
+            {% comment %} <div class="text-center">
+                {% bootstrap_pagination page_obj %}
+            </div> {% endcomment %}
         </div>
     </div>
 </div>

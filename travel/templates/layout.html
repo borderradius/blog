@@ -23,7 +23,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
 
 
-
     <style>
         html {
             position: relative;
@@ -142,6 +141,19 @@
         </div>
         <!-- Collapsible content -->
     </nav>
+
+    {% if messages %}
+    <div class="container">
+        {% for message in messages  %}
+        <div class="alert alert-{{ message.tags }}">
+            [{{ message.tags }}]
+            {{ message.message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
     <!--/.Navbar-->
     {# 한줄주석 #}
 
