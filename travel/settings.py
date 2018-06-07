@@ -73,6 +73,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            # context_processors 의 역할
+            # 모든 템플릿에서 사용하는 변수목록이 있는데 그런 변수들을 매번 뷰함수에서 하나하나 지정해서 넘기는건 번거로움.
+            # 고로 context_processors에 등록해두면 뷰에서 넘기지 않고도 템플릿에서 접근해서 사용할 수 있다는 것.
         },
     },
 ]
@@ -135,3 +138,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 INTERNAL_IPS = ['127.0.0.1']
+
+from django.contrib.messages import constants
+MESSAGE_LEVEL = constants.DEBUG # 지금부터 debug레벨의 messages를 남길수있음.
+MESSAGE_TAGS = {constants.ERROR: 'danger'}
