@@ -25,7 +25,7 @@ class Post(models.Model):
     # author = models.CharField(max_length=20)
     title = models.CharField(max_length=100) # 길이제한이 있는 문자열
     content = models.TextField() # 길이제한이 없는 문자열
-    photo = models.ImageField(blank=True)
+    photo = models.ImageField(blank=True, upload_to='blog/post/%Y/%m/%d')
     tags = models.CharField(
         max_length=100, 
         blank=True)
