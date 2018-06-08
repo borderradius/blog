@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.shortcuts import redirect
-
+from django.conf.urls.static import static
 # def root(request):
 #     return redirect('blog:post_list')
 
@@ -15,6 +15,9 @@ urlpatterns = [
     url(r'^accounts/', include('accounts.urls', namespace='accounts')),
     url(r'^shop/', include('shop.urls', namespace='shop')),
 ]
+
+# MEDIA_URL에 설정된 경로로 시작을 한다면 ROOT에 설정된 경로에서 서빙을 하겠다.
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar
