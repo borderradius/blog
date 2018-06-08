@@ -143,6 +143,10 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# 각 media파일에 대한 URL Prefix
+MEDIA_URL = '/media/' # 항상 /로 끝이 나도록 설정, url이 media로 들어오는가? 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 업로드된 파일을 저장할 디렉토리 경로
+
 INTERNAL_IPS = ['127.0.0.1']
 
 from django.contrib.messages import constants
