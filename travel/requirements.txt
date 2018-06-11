@@ -4,3 +4,5 @@ django-extensions
 ipython[notebook]
 django-bootstrap3
 pillow
+pilkit
+requests
