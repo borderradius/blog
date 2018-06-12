@@ -2,6 +2,7 @@
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 def signup(request):
     if request.method == 'POST':
@@ -18,6 +19,6 @@ def signup(request):
 def login(request):
     pass
 
-
+@login_required # 데코레이터 혹은 장식자. 함수를 감싸줌. wrapping. 
 def profile(request):
     return render(request, 'accounts/profile.html')
