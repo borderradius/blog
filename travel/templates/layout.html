@@ -97,16 +97,22 @@
                     </a>
                 </li>
                 
-                {% if user %}
-                    <li class="nav-item">
+                {% if user.is_authenticated %}
+                    {% comment %} <li class="nav-item">
                         <a class="nav-link" href="#">{{ user }}, {{ user.date_joined }}</a>
+                    </li> {% endcomment %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">프로필</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">로그아웃</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">회원가입</a>
+                        <a class="nav-link" href="{% url 'signup' %}">회원가입</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">로그인</a>
+                        <a class="nav-link" href="{% url 'login' %}">로그인</a>
                     </li>
                 {% endif %}
                 
