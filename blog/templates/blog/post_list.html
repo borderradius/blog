@@ -42,6 +42,7 @@
                         <th>title</th>
                         <th>author</th>
                         <th>updated_at</th>
+                        <th>comments</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,6 +55,13 @@
                         <a href="{% url 'blog:post_detail' post.id  %}">
                         {{post.title}}
                         </a>
+                        {% for tag in post.tag_set.all %}
+                        <div>
+                            <span class="label label-info">
+                            {{tag.name}}
+                            </span>
+                        </div>
+                        {% endfor %}
                     </td>
                     <td>
                     <small>by {{post.author}}</small>
@@ -61,6 +69,10 @@
                     <td>
                     <small>by {{post.updated_at}}</small>
                     </td>
+                    {% comment %} <td>
+                        {{ post.comment_set.all }}
+                        
+                    </td> {% endcomment %}
                 </tr>
                 {% endfor %}
                 </tbody>

@@ -16,14 +16,14 @@ def post_list(request):
 
     qs = Post.objects.all()
     q = request.GET.get('q', '')
-    post_list = ListView.as_view(model=Post, paginate_by=10)
+    # post_list = ListView.as_view(model=Post, paginate_by=10)
     if q:
         qs = qs.filter(title__icontains=q)
 
     return render(request, 'blog/post_list.html', {
         'post_list': qs,
         'q':q,
-        'pagination': post_list,
+        # 'pagination': post_list,
     })
 
 def post_detail(request, id):
@@ -91,7 +91,7 @@ def post_edit(request, id):
 
 def comment_list(request):
     # comment_list = Comment.objects.all()
-    comment_list = Comment.objects.all().select_related('post') # 왜래키, OneToOne 관계일때 쿼리갯수를 줄일수있다.
+    comment_list = Comment.objects.all().select_related('post') # 외래키, OneToOne 관계일때 쿼리갯수를 줄일수있다.
     return render(request, 'blog/comment_list.html', {
         'comment_list': comment_list,
     })
