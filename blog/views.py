@@ -14,7 +14,8 @@ def post_list(request):
     print(request.user.is_authenticated)
     print(request.user)
 
-    qs = Post.objects.all()
+    # qs = Post.objects.all()
+    qs = Post.objects.prefetch_related('comment_set','tag_set').all()
     q = request.GET.get('q', '')
     # post_list = ListView.as_view(model=Post, paginate_by=10)
     if q:
