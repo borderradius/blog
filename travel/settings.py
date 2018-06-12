@@ -152,3 +152,22 @@ INTERNAL_IPS = ['127.0.0.1']
 from django.contrib.messages import constants
 MESSAGE_LEVEL = constants.DEBUG # 지금부터 debug레벨의 messages를 남길수있음.
 MESSAGE_TAGS = {constants.ERROR: 'danger'}
+
+
+# 기본 로그인 페이지 url지정
+# login required 장식자 등에 의해서 사용
+LOGIN_URL = '/accounts/login/'
+
+# 로그인 완료 후에 get방식으로 next 인자가 지정되면 next의 url로 페이지이동
+# next 인자가 없으면 아래 url로 이동
+LOGIN_REDIRECT_URL = '/accounts/profile'
+
+# 로그아웃 완료 후에
+# - next_page 인자가 지정되면 next_page url 로 페이지 이동
+# - next_page 인자가 없으면 LOGOUT_REDIRECT_URL 이 지정되었을 경우 그곳으로 이동
+# - next_page 인자가 지정되지 않고 LOGOUT_REDIRECT_URL이 None 일 경우
+#   redirect를 수행하지 않고 'registration/logged_out.html' 템플릿 렌더링
+LOGOUT_REDIRECT_URL = None
+
+# 인증에 사용할 커스텀 User 모델 지정, '앱이름.모델명'
+AUTH_USER_MODEL = 'auth.User'

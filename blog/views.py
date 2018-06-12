@@ -10,6 +10,10 @@ from django.contrib import messages
 
 # Create your views here.
 def post_list(request):
+
+    print(request.user.is_authenticated)
+    print(request.user)
+
     qs = Post.objects.all()
     q = request.GET.get('q', '')
     post_list = ListView.as_view(model=Post, paginate_by=10)

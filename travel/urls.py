@@ -12,7 +12,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('blog.urls', namespace='blog')), # namespace 를 지정해주므로써 다른 앱의 동일한 url name을 구분 지을수 있다. blog:post_list , shop:post_list   include에 대한 namaspace이므로 헷갈리지 말것.
     url(r'^dojo/', include('dojo.urls', namespace='dojo')),
-    url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+    # url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+    url(r'^accounts/', include('accounts.urls')), # auth와 연동해서 쓸때에는 namespace연동 노노
     url(r'^shop/', include('shop.urls', namespace='shop')),
 ]
 
