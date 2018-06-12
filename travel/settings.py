@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'accounts',
     'shop',
     'bootstrap3',
+    'raven.contrib.django.raven_compat',
 ]
 
 MIDDLEWARE = [
@@ -171,3 +172,20 @@ LOGOUT_REDIRECT_URL = None
 
 # 인증에 사용할 커스텀 User 모델 지정, '앱이름.모델명'
 AUTH_USER_MODEL = 'auth.User'
+
+
+import raven
+
+# GIT_ROOT = os.path.join(BASE_DIR, '..') # FIXME: 현 프로젝트 ROOT 지정
+GIT_ROOT = BASE_DIR
+if os.path.exists(os.path.join(GIT_ROOT, '.git')):
+    release = raven.fetch_git_sha(GIT_ROOT) # 현재 최근 커밋해시 쵝득
+else:
+    release = 'dev'
+
+RAVEN_CONFIG = {
+    'dsn': 'https://75488e07f3934b779383efcc10d579b2:23effe5676f64bf99ede25252474b935@sentry.io/1224113',
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': release,
+}
