@@ -90,7 +90,8 @@ def post_edit(request, id):
     })
 
 def comment_list(request):
-    comment_list = Comment.objects.all()
+    # comment_list = Comment.objects.all()
+    comment_list = Comment.objects.all().select_related('post') # 왜래키, OneToOne 관계일때 쿼리갯수를 줄일수있다.
     return render(request, 'blog/comment_list.html', {
         'comment_list': comment_list,
     })
