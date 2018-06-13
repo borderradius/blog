@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^dojo/', include('dojo.urls', namespace='dojo')),
     # url(r'^accounts/', include('accounts.urls', namespace='accounts')),
     url(r'^accounts/', include('accounts.urls')), # auth와 연동해서 쓸때에는 namespace연동 노노
+    url(r'^accounts/', include('allauth.urls')), # sns login
     url(r'^shop/', include('shop.urls', namespace='shop')),
 ]
 

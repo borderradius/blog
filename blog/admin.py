@@ -10,7 +10,7 @@ class PostAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
-        return qs.prefetch_related('tag_setpip')
+        return qs.prefetch_related('tag_set')
 
     def tag_list(request, post):
         return ', '.join(tag.name for tag in post.tag_set.all()) # list comprehension문법  
