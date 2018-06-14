@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-
+from os.path import abspath, dirname, join
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = dirname(dirname(dirname(abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +26,7 @@ SECRET_KEY = 'k@66=q@b*b^72pafnip)gcs*%_yo+8*l7%1@lz-j3m%n87y!&='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*'] 
 
 
 # Application definition
@@ -38,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-    'debug_toolbar',
+    
     'blog',
     'dojo',
     'accounts',
@@ -62,7 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'travel.urls'
@@ -98,11 +99,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'USER': 'db user name',
-        # 'PASSWORD': 'db password',
-        # 'HOST': '127.0.0.1',
-        # 'PORT': '3306',
     }
 }
 
@@ -164,7 +160,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/' # 항상 /로 끝이 나도록 설정, url이 media로 들어오는가? 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 업로드된 파일을 저장할 디렉토리 경로
 
-INTERNAL_IPS = ['127.0.0.1']
+
 
 from django.contrib.messages import constants
 MESSAGE_LEVEL = constants.DEBUG # 지금부터 debug레벨의 messages를 남길수있음.
